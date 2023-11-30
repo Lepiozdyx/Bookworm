@@ -28,7 +28,7 @@ struct RatingView: View {
                 Button {
                     rating = number
                 } label: {
-                    image(for: number)
+                    getImage(for: number)
                         .foregroundStyle(number > rating ? offColor : onColor)
                 }
             }
@@ -36,7 +36,7 @@ struct RatingView: View {
         .buttonStyle(.plain)
     }
     
-    func image(for number: Int) -> Image {
+    private func getImage(for number: Int) -> Image {
         if number > rating {
             offImage ?? onImage
         } else {

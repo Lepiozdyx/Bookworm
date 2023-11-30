@@ -10,12 +10,12 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) var modelContext
+    @State private var isShowingAddScreen = false
+    
     @Query(sort: [
         SortDescriptor(\Book.title),
         SortDescriptor(\Book.author),
     ]) var books: [Book]
-    
-    @State private var isShowingAddScreen = false
     
     var body: some View {
         NavigationStack {
@@ -29,6 +29,7 @@ struct ContentView: View {
                             VStack(alignment: .leading) {
                                 Text(book.title)
                                     .font(.headline)
+                                    .foregroundStyle(book.rating < 2 ? .red : .black)
                                 Text(book.author)
                                     .font(.subheadline)
                             }
@@ -58,7 +59,7 @@ struct ContentView: View {
         }
     }
     
-    func deleteBooks(at offsets: IndexSet) {
+    private func deleteBooks(at offsets: IndexSet) {
         for offset in offsets {
             // find this book in our query
             let book = books[offset]

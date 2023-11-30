@@ -10,11 +10,12 @@ import SwiftData
 
 @Model
 final class Book {
-    var title: String
-    var author: String
-    var genre: String
-    var review: String
-    var rating: Int
+    let title: String
+    let author: String
+    let genre: String
+    let review: String
+    let rating: Int
+    let date = Date.now
     
     init(title: String, author: String, genre: String, review: String, rating: Int) {
         self.title = title

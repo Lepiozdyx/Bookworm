@@ -28,7 +28,7 @@ struct DetailView: View {
                     .fontWeight(.black)
                     .padding(8)
                     .foregroundStyle(.white)
-                    .background(.black.opacity(0.7))
+                    .background(.ultraThinMaterial)
                     .clipShape(.rect(cornerRadius: 10))
                     .offset(x: -5, y: -5)
             }
@@ -42,6 +42,12 @@ struct DetailView: View {
             
             RatingView(rating: .constant(book.rating))
                 .font(.title)
+            
+            Text("\(book.date.formatted(date: .long, time: .shortened))")
+                .fontWeight(.ultraLight)
+                .padding()
+                .background(.ultraThinMaterial)
+                .clipShape(.rect(cornerRadius: 10))
         }
         .navigationTitle(book.title)
         .navigationBarTitleDisplayMode(.inline)
@@ -59,7 +65,7 @@ struct DetailView: View {
         }
     }
     
-    func deleteBook() {
+    private func deleteBook() {
         modelContext.delete(book)
         dismiss()
     }
